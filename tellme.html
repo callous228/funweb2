@@ -1,0 +1,122 @@
+<html>
+<head>
+<title>Tell me</title>
+<style>
+p {
+  text-align: center;
+  font-size: 32px;
+  font-family: Candara, Oswald;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  width: 40%;
+  border: 2px solid #f10d0d;
+  border-radius: 5px;
+}
+
+#botao1 {
+  position: fixed;
+  top: 70%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  padding: 12px 20px;
+  border-radius: 50px;
+  background-color: #ff4081;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+#botao2 {
+  position: absolute;
+  left: 39%;
+  top: 68%;
+  font-size: 24px;
+  padding: 12px 20px;
+  border-radius: 50px;
+  background-color: #ff4081;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple:after {
+  content: "";
+  display: block;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: rippleEffect 0.6s linear;
+}
+
+@keyframes rippleEffect {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+}
+
+</style>
+</head>
+<body>
+  <p>Are you coming to meet me?</p>
+  <img src="https://media.tenor.com/zGm5acSjHCIAAAAM/cat-begging.gif">
+
+  <button id="botao1" class="ripple">YES Bauua!</button>
+  <button id="botao2">NO</button>
+
+<script>
+const button1 = document.getElementById('botao1');
+const button2 = document.getElementById('botao2');
+
+button1.addEventListener('click', function(e) {
+  e.preventDefault();
+  alert('yeeeeyyyyy Love you❤️');
+  button1.classList.add('ripple');
+});
+
+button2.addEventListener('mouseover', function() {
+  const maxWidth = window.innerWidth - this.offsetWidth;
+  const maxHeight = window.innerHeight - this.offsetHeight;
+  const newLeft = Math.floor(Math.random() * maxWidth);
+  const newTop = Math.floor(Math.random() * maxHeight);
+  
+  this.style.left = newLeft + 'px';
+  this.style.top = newTop + 'px';
+});
+
+button1.addEventListener('mousedown', function(e) {
+  const ripple = button1.querySelector('.ripple');
+  const rect = button1.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  
+  ripple.style.left = x + 'px';
+  ripple.style.top = y + 'px';
+  ripple.classList.remove('ripple');
+  void ripple.offsetWidth;
+  ripple.classList.add('ripple');
+});
+
+</script>
+</body>
+</html>
